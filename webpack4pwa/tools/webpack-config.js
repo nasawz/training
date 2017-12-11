@@ -84,6 +84,10 @@ module.exports = (type) => {
           to: 'lib/'
         },
         {
+          from: config.webpack.path.src + '/assets/',
+          to: 'assets/'
+        },
+        {
           from: config.webpack.path.src + '/favicon.png',
           to: './'
         },
@@ -109,10 +113,7 @@ module.exports = (type) => {
           options: {
             transpileOnly: true,
             getCustomTransformers: () => ({
-              before: [tsImportPluginFactory({
-                libraryName: 'antd',
-                libraryDirectory: 'lib', "style": "less"
-              })]
+              before: [tsImportPluginFactory({})]
             }),
             compilerOptions: {
               module: 'es2015'
@@ -129,7 +130,7 @@ module.exports = (type) => {
                 options: {
                   plugins: postcssFun
                 }
-              }, `less-loader`],
+              }, 'less-loader'],
             publicPath: '../../'
           })
         },
