@@ -5,6 +5,12 @@ import { Layout } from 'antd';
 const { Content } = Layout;
 import Rss from './rss'
 
+import * as OfflinePluginRuntime from 'offline-plugin/runtime';
+OfflinePluginRuntime.install({
+  onUpdateReady: () => OfflinePluginRuntime.applyUpdate(),
+  onUpdated: () => location.reload(),
+});
+
 import './index.less'
 
 import { DatePicker } from 'antd';

@@ -10,6 +10,7 @@ export interface RssState {
   listData: Array<Object>
 }
 export default class Rss extends React.Component<RssProps, RssState> {
+  setState: any;
   state: RssState
 
   constructor(props: RssProps) {

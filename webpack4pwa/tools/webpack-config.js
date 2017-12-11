@@ -10,9 +10,9 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin-hash');
 const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
 const tsImportPluginFactory = require('ts-import-plugin')
-
+const WebpackManifestPlugin = require('webpack-manifest-plugin');
+const OfflinePlugin = require('offline-plugin');
 
 module.exports = (type) => {
   const isDev = type === 'dev';
@@ -58,8 +58,8 @@ module.exports = (type) => {
       path: path.join(config.webpack.path.pub)
     },
     externals: {
-      'react': 'React',
-      'react-dom': 'ReactDOM',
+      // 'react': 'React',
+      // 'react-dom': 'ReactDOM',
     },
     plugins: _.compact([
       isDev && new webpack.HotModuleReplacementPlugin(),
@@ -79,10 +79,10 @@ module.exports = (type) => {
         }
       }),
       new CopyWebpackPlugin([
-        {
-          from: config.webpack.path.src + '/lib/',
-          to: 'lib/'
-        },
+        // {
+        //   from: config.webpack.path.src + '/lib/',
+        //   to: 'lib/'
+        // },
         {
           from: config.webpack.path.src + '/assets/',
           to: 'assets/'
@@ -92,6 +92,23 @@ module.exports = (type) => {
           to: './'
         },
       ]),
+      new WebpackManifestPlugin({
+        fileName: 'manifest.json',
+        seed: {
+          name: pkgJson.name,
+          short_name: pkgJson.name,
+          start_url: 'index.html',
+          display: 'standalone',
+          theme_color: '#40a9ff',
+          background_color: '#f0f2f5',
+          orientation: 'landscape',
+          icons: [{
+            src: 'favicon.png',
+            sizes: '144x144',
+            type: 'image/png'
+          }]
+        }
+      }),
       new HtmlWebpackPlugin({
         title: 'pwa',
         template: './src/templates/index.ejs',
@@ -99,11 +116,12 @@ module.exports = (type) => {
       }),
       new HtmlWebpackIncludeAssetsPlugin({
         assets: [
-          'lib/react.production.min.js',
-          'lib/react-dom.production.min.js',
+          // 'lib/react.production.min.js',
+          // 'lib/react-dom.production.min.js',
         ],
         append: false
       }),
+      new OfflinePlugin()
     ]),
     module: {
       rules: _.compact([
