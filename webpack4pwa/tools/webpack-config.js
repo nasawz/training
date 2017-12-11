@@ -111,7 +111,7 @@ module.exports = (type) => {
             getCustomTransformers: () => ({
               before: [tsImportPluginFactory({
                 libraryName: 'antd',
-                libraryDirectory: 'lib',
+                libraryDirectory: 'lib', "style": "less"
               })]
             }),
             compilerOptions: {
@@ -136,7 +136,7 @@ module.exports = (type) => {
         {
           test: /\.css$/,
           use: extractApp.extract({
-            use: ['css-loader?modules&importLoaders=1&localIdentName=[name]_[local]_[hash:base64:5]', {
+            use: ['css-loader', {
               loader: 'postcss-loader',
               options: {
                 plugins: postcssFun

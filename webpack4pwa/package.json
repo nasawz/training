@@ -9,6 +9,7 @@
   "author": "nasa.wang",
   "license": "MIT",
   "dependencies": {
+    "antd": "^3.0.1",
     "axios": "^0.17.1",
     "copy-webpack-plugin-hash": "^5.1.1",
     "css-loader": "^0.28.7",

@@ -4,6 +4,8 @@ import { AppContainer } from 'react-hot-loader';
 
 import './index.less'
 
+import { DatePicker } from 'antd';
+
 ReactDOM.render(
   <AppContainer>
     <div>pwa</div>
