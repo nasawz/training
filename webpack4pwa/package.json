@@ -1,0 +1,41 @@
+{
+  "name": "webpack4pwa",
+  "version": "1.0.0",
+  "description": "pwa webpack",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./tools/server.js"
+  },
+  "author": "nasa.wang",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.17.1",
+    "copy-webpack-plugin-hash": "^5.1.1",
+    "css-loader": "^0.28.7",
+    "cssnano": "^3.10.0",
+    "express": "^4.16.2",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.5",
+    "html-webpack-include-assets-plugin": "^1.0.2",
+    "html-webpack-plugin": "^2.30.1",
+    "http-proxy-middleware": "^0.17.4",
+    "less": "^2.7.3",
+    "less-loader": "^4.0.5",
+    "lodash": "^4.17.4",
+    "postcss-cssnext": "^3.0.2",
+    "postcss-import": "^11.0.0",
+    "postcss-loader": "^2.0.9",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-hot-loader": "^3.1.3",
+    "ts-import-plugin": "^1.4.3",
+    "ts-loader": "^3.2.0",
+    "tslint": "^5.8.0",
+    "tslint-react": "^3.2.0",
+    "typescript": "^2.6.2",
+    "url-loader": "^0.6.2",
+    "webpack": "^3.10.0",
+    "webpack-dev-middleware": "^1.12.2",
+    "webpack-hot-middleware": "^2.21.0"
+  }
+}
