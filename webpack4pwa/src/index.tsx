@@ -6,19 +6,30 @@ const { Content } = Layout;
 import Rss from './rss'
 
 import * as OfflinePluginRuntime from 'offline-plugin/runtime';
+
 OfflinePluginRuntime.install({
-  onUpdateReady: () => OfflinePluginRuntime.applyUpdate(),
-  onUpdated: () => location.reload(),
+  onInstalled: () => {
+    console.log('onInstalled');
+  },
+  onUpdating: () => {
+    console.log('onUpdating');
+  },
+  onUpdateReady: () => {
+    console.log('-->>>');
+    OfflinePluginRuntime.applyUpdate()
+  },
+  onUpdated: () => {
+    console.log('----');
+    // location.reload()
+  },
 });
 
 import './index.less'
 
-import { DatePicker } from 'antd';
-
 ReactDOM.render(
   <AppContainer>
     <Layout className="layout">
-      <Content style={{ padding: '50px' }}>
+      <Content style={{ padding: '10px' }}>
         <Rss />
       </Content>
     </Layout>

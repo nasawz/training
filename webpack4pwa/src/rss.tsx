@@ -1,13 +1,15 @@
 import * as React from 'react';
-import { List, Avatar, Icon } from 'antd';
+import { Spin, List, Avatar, Icon } from 'antd';
 import axios from 'axios'
 import _ from 'lodash'
+import Offline from './offline'
 
 export interface RssProps {
 }
 
 export interface RssState {
   listData: Array<Object>
+  loading: boolean
 }
 export default class Rss extends React.Component<RssProps, RssState> {
   setState: any;
@@ -16,7 +18,8 @@ export default class Rss extends React.Component<RssProps, RssState> {
   constructor(props: RssProps) {
     super();
     this.state = {
-      listData: []
+      listData: [],
+      loading: true
     }
   }
 
@@ -32,28 +35,37 @@ export default class Rss extends React.Component<RssProps, RssState> {
         })
       })
       this.setState({
-        listData: datas
+        listData: datas,
+        loading: false
       });
     }).catch((err) => {
     })
   }
 
   render() {
-    return (
-      <List
-        itemLayout="vertical"
-        size="large"
-        dataSource={this.state.listData}
-        renderItem={item => (
-          <List.Item key={item.title}>
-            <List.Item.Meta
-              title={<a href={item.href}>{item.title}</a>}
-              description={item.description}
-            />
-            <div dangerouslySetInnerHTML={{ __html: item.content }} />
-          </ List.Item>
-        )}
-      />
+
+    let rss = (
+      <Spin tip="Loading..." spinning={this.state.loading}>
+        <List
+          itemLayout="vertical"
+          size="large"
+          dataSource={this.state.listData}
+          renderItem={item => (
+            <List.Item key={item.title}>
+              <List.Item.Meta
+                title={<a href={item.href}>{item.title}</a>}
+                description={item.description}
+              />
+              <div dangerouslySetInnerHTML={{ __html: item.content }} />
+            </ List.Item>
+          )}
+        />
+      </Spin>
     );
+    if (!navigator.onLine) {
+      rss = <Offline />
+    }
+
+    return rss
   }
 }
