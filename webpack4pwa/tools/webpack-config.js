@@ -122,8 +122,9 @@ module.exports = (type) => {
         append: false
       }),
       new OfflinePlugin({
-        AppCache:false,
-        ServiceWorker:{
+        AppCache: false,
+        autoUpdate: 1000 * 60 * 2,
+        ServiceWorker: {
           entry: path.join(__dirname, '../src/sw-handler.js'),
           events: true,
         }
