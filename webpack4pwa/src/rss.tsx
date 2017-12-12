@@ -39,6 +39,10 @@ export default class Rss extends React.Component<RssProps, RssState> {
         loading: false
       });
     }).catch((err) => {
+      this.setState({
+        listData: [],
+        loading: false
+      });
     })
   }
 

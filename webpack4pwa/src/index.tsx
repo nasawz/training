@@ -8,20 +8,8 @@ import Rss from './rss'
 import * as OfflinePluginRuntime from 'offline-plugin/runtime';
 
 OfflinePluginRuntime.install({
-  onInstalled: () => {
-    console.log('onInstalled');
-  },
-  onUpdating: () => {
-    console.log('onUpdating');
-  },
-  onUpdateReady: () => {
-    console.log('-->>>');
-    OfflinePluginRuntime.applyUpdate()
-  },
-  onUpdated: () => {
-    console.log('----');
-    // location.reload()
-  },
+  onUpdateReady: () => OfflinePluginRuntime.applyUpdate(),
+  onUpdated: () => location.reload(),
 });
 
 import './index.less'
