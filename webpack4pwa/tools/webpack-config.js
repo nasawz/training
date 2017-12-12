@@ -121,7 +121,13 @@ module.exports = (type) => {
         ],
         append: false
       }),
-      new OfflinePlugin()
+      new OfflinePlugin({
+        AppCache:false,
+        ServiceWorker:{
+          entry: path.join(__dirname, '../src/sw-handler.js'),
+          events: true,
+        }
+      })
     ]),
     module: {
       rules: _.compact([
