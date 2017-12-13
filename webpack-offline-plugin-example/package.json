@@ -1,0 +1,23 @@
+{
+  "name": "webpack-offline-plugin-example",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack-dev-server"
+  },
+  "keywords": [
+    "webpack",
+    "offline",
+    "typescript"
+  ],
+  "author": "nasa.wang",
+  "license": "MIT",
+  "dependencies": {
+    "html-webpack-plugin": "^2.30.1",
+    "offline-plugin": "^4.8.5",
+    "ts-loader": "^3.2.0",
+    "typescript": "^2.6.2",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.9.7"
+  }
+}
