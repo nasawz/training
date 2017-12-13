@@ -122,10 +122,11 @@ module.exports = (type) => {
         append: false
       }),
       new OfflinePlugin({
-        AppCache: false,
+        excludes: ['**/*.map'],
+        updateStrategy: 'changed',
         autoUpdate: 1000 * 60 * 2,
         ServiceWorker: {
-          entry: path.join(__dirname, '../src/sw-handler.js'),
+          navigateFallbackURL: '/',
           events: true,
         }
       })
