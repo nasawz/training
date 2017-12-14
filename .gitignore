@@ -1,1 +1,2 @@
 webpack-offline-plugin-example/dist
+**/*/dist
