@@ -5,9 +5,14 @@ const html = new HtmlWebpackPlugin({ template: './src/index.ejs' })
 const offline = new OfflinePlugin
 
 module.exports = {
-  entry: './src/index',
+  entry: './src/main',
+  devServer: {
+    port: 8080,
+    inline: true,
+    progress: true,
+  },
   resolve: {
-    extensions: ['.ts', '.tsx']
+    extensions: ['.ts', '.tsx', '.js']
   },
   output: {
     filename: '[name].[hash].js',
@@ -20,5 +25,8 @@ module.exports = {
       exclude: /node_modules/
     }]
   },
-  plugins: [html, offline],
+  plugins: [
+    html,
+    offline
+  ],
 }
