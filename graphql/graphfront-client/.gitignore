@@ -1,0 +1,7 @@
+src/components/cex
+dist
+node_modules/
+storybook-static
+.vscode
+coverage
+src/img
