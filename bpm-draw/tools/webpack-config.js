@@ -56,8 +56,8 @@ module.exports = (type) => {
       path: path.join(config.webpack.path.pub)
     },
     externals: {
-      // 'react': 'React',
-      // 'react-dom': 'ReactDOM',
+      'react': 'React',
+      'react-dom': 'ReactDOM',
       // 'lodash': '_',
       // 'jquery': 'jQuery',
       // 'backbone': 'Backbone',
@@ -97,10 +97,10 @@ module.exports = (type) => {
       }),
       new HtmlWebpackIncludeAssetsPlugin({
         assets: [
-          // 'lib/rappid.min.css',
+          'lib/rappid.min.css',
           // 'lib/lodash.min.js',
-          // 'lib/react.min.js',
-          // 'lib/react-dom.min.js',
+          'lib/react.min.js',
+          'lib/react-dom.min.js',
         ],
         append: false
       }),
@@ -115,7 +115,7 @@ module.exports = (type) => {
         {
           test: /\.less$/,
           use: extractApp.extract({
-            use: ['css-loader?modules&importLoaders=1&localIdentName=[name]_[local]_[hash:base64:5]',
+            use: ['css-loader',
               {
                 loader: 'postcss-loader',
                 options: {
@@ -128,7 +128,7 @@ module.exports = (type) => {
         {
           test: /\.css$/,
           use: extractApp.extract({
-            use: ['css-loader?modules&importLoaders=1&localIdentName=[name]_[local]_[hash:base64:5]', {
+            use: ['css-loader', {
               loader: 'postcss-loader',
               options: {
                 plugins: postcssFun

@@ -1,7 +1,11 @@
 
 import * as joint from './rappid/rappid.min'
 
-console.log(joint);
+import { ThemePicker } from './module/view/theme-picker';
+
+const themePicker = new ThemePicker({ mainView: null });
+themePicker.render().$el.appendTo(document.body);
+
 
 declare var module: any
 if (module.hot) {
