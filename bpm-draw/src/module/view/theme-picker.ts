@@ -2,8 +2,6 @@ import * as joint from '../../rappid/rappid.min';
 import * as _ from 'lodash';
 import * as Backbone from 'backbone';
 
-import './theme-picker.less'
-
 namespace ThemePicker {
   export interface MainView extends Backbone.Events {
     commandManager: joint.dia.CommandManager;
