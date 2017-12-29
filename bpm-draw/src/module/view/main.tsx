@@ -4,24 +4,33 @@ import * as _ from 'lodash';
 import * as $ from 'jquery'
 import * as config from '../config/';
 
+
+import { ThemePicker } from './theme-picker';
+
 import '../../models/joint.shapes.app'
 
 
 import './main.less'
 import './modern.less'
+import './material.less'
+import './dark.less'
 
 export interface MainProps {
 }
 
-joint.setTheme('modern');
+
+
 
 export default class Main extends React.Component<MainProps, any> {
+
+
   // Conatiner
   paperContainer: HTMLDivElement
   stencilContainer: HTMLDivElement
   inspectorContainer: HTMLDivElement
   navigatorContainer: HTMLDivElement
   toolbarContainer: HTMLDivElement
+  appContainer: HTMLDivElement
 
   // rappid things
   graph: joint.dia.Graph;
@@ -35,6 +44,14 @@ export default class Main extends React.Component<MainProps, any> {
   selection: joint.ui.Selection;
   toolbar: joint.ui.Toolbar;
   navigator: joint.ui.Navigator;
+
+  constructor(props: MainProps) {
+    super(props);
+
+    this.state = {
+      theme: 'modern',
+    }
+  }
 
   initializePaper() {
 
@@ -342,6 +359,17 @@ export default class Main extends React.Component<MainProps, any> {
     this.paperScroller.centerContent();
   }
 
+  initializeThemePicker() {
+    const themePicker = new ThemePicker({
+      mainView: this, cb: (theme: string) => {
+        this.setState({
+          theme: theme
+        });
+      }
+    });
+    themePicker.render().$el.appendTo(this.appContainer);
+  }
+
   componentDidMount() {
     this.initializePaper();
     this.initializeStencil();
@@ -353,11 +381,16 @@ export default class Main extends React.Component<MainProps, any> {
     this.initializeKeyboardShortcuts();
     this.initializeTooltips();
 
-  }
 
+
+    joint.setTheme(this.state.theme);
+
+    this.initializeThemePicker();
+  }
   render() {
+    let cls = `bpm-app joint-theme-${this.state.theme}`
     return (
-      <div className="bpm-app joint-theme-modern">
+      <div className={cls} ref={(node) => { this.appContainer = node }}>
         <div className="app-header">
           <div className="app-title">
             <h1>bpm</h1>

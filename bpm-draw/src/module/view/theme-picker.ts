@@ -1,9 +1,22 @@
-import * as joint from '../../rappid/rappid.min';
+/*! Rappid v2.2.0 - HTML5 Diagramming Framework - TRIAL VERSION
+
+Copyright (c) 2015 client IO
+
+ 2017-12-26 
+
+
+This Source Code Form is subject to the terms of the Rappid Trial License
+, v. 2.0. If a copy of the Rappid License was not distributed with this
+file, You can obtain one at http://jointjs.com/license/rappid_v2.txt
+ or from the Rappid archive as was distributed by client IO. See the LICENSE file.*/
+
+
+import * as joint from '../../rappid/rappid.min'
 import * as _ from 'lodash';
 import * as Backbone from 'backbone';
 
 namespace ThemePicker {
-  export interface MainView extends Backbone.Events {
+  export interface MainView {
     commandManager: joint.dia.CommandManager;
     paper: joint.dia.Paper;
     graph: joint.dia.Graph;
@@ -12,21 +25,22 @@ namespace ThemePicker {
 
 export class ThemePicker extends joint.ui.Toolbar {
 
-  options: {
-    tools: Array<{ [key: string]: any }>
-  };
-
-  mainView: ThemePicker.MainView;
-
-  constructor(options: { mainView: ThemePicker.MainView }) {
+  constructor(options: { mainView: ThemePicker.MainView, cb: any }) {
 
     super({
       className: _.result(joint.ui.Toolbar.prototype, 'className') + ' theme-picker'
     });
 
     this.mainView = options.mainView;
+    this.cb = options.cb
   }
 
+  options: {
+    tools: Array<{ [key: string]: any }>
+  };
+
+  mainView: ThemePicker.MainView;
+  cb: any
 
   init() {
 
@@ -56,17 +70,16 @@ export class ThemePicker extends joint.ui.Toolbar {
     super.init()
   }
 
-
   onThemeSelected(option: any) {
 
     joint.setTheme(option.value);
+    console.log('this.mainView', this.mainView);
     if (this.mainView) {
       this.adjustAppToTheme(this.mainView, option.value);
     }
   }
 
   adjustAppToTheme(app: ThemePicker.MainView, theme: string) {
-
 
     // Make the following changes silently without the command manager notice.
     app.commandManager.stopListening();
@@ -97,5 +110,6 @@ export class ThemePicker extends joint.ui.Toolbar {
     }
 
     app.commandManager.listen();
+    this.cb(theme)
   }
 }
