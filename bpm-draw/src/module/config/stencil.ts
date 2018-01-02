@@ -3,71 +3,172 @@ import { ui } from '../../rappid/rappid.min'
 
 export const stencil = {
   groups: <{ [key: string]: ui.Stencil.Group }>{
+    bpmn: { index: 0, label: 'bpmn shapes' },
     basic: { index: 1, label: 'Basic shapes' },
-    fsa: { index: 2, label: 'State machine' },
-    pn: { index: 3, label: 'Petri nets' },
-    erd: { index: 4, label: 'Entity-relationship' },
-    uml: { index: 5, label: 'UML' },
-    org: { index: 6, label: 'ORG' }
+    // fsa: { index: 2, label: 'State machine' },
+    // pn: { index: 3, label: 'Petri nets' },
+    // erd: { index: 4, label: 'Entity-relationship' },
+    // uml: { index: 5, label: 'UML' },
+    // org: { index: 6, label: 'ORG' }
   },
   shapes: {
+    bpmn: [
+      {
+        type: 'bpmn.Gateway',
+        attrs: {
+          '.body': { fill: '#feb663', stroke: 'black' },
+          '.label': { fill: 'gray', text: '' }
+        },
+        icon: 'cross'
+      },
+      {
+        type: 'bpmn.Activity',
+        attrs: {
+          '.body': { fill: '#feb663', stroke: 'black' },
+        },
+        content: '',
+        activityType: 'transaction'
+      },
+      {
+        type: 'bpmn.Event',
+        attrs: {
+          '.body': { fill: '#feb663', stroke: 'black' },
+          '.label': { fill: 'gray', text: '' }
+        },
+        icon: 'message',
+        eventType: 'start'
+      },
+      {
+        type: 'bpmn.Annotation',
+        attrs: {
+          '.body': { fill: '#feb663' },
+          '.stroke': { stroke: '#222138' }
+        },
+        content: ''
+      },
+      {
+        type: 'bpmn.Pool',
+        attrs: {
+          '.': { magnet: false },
+          // '.lane-header': { fill: 'silver' },
+          '.header': { fill: '#feb663' }
+        },
+        lanes: { label: 'Pool' }
+      },
+      {
+        type: 'bpmn.Group',
+        attrs: {
+          '.': { magnet: false },
+          '.label': { text: 'group', fill: 'gray' },
+          '.label-rect': { fill: 'transparent', stroke: 'black' },
+        }
+      },
+      {
+        type: 'bpmn.Choreography',
+        attrs: {
+          '.body': { fill: 'gold', stroke: 'black' },
+          '.label': { fill: 'gray', text: '' },
+          '.participant-rect': { fill: 'silver' }
+        },
+        participants: ['partic1', 'partic2', 'partic3'],
+        initiatingParticipant: 2, // ='partic3',
+        content: 'A content of the Choreography'
+      },
+      {
+        type: 'bpmn.Conversation',
+        attrs: {
+          '.body': { fill: 'gold', stroke: 'black' },
+          '.label': { fill: 'gray', text: '' }
+        },
+        conversationType: 'call-conversation'
+      },
+      {
+        type: 'bpmn.DataObject',
+        attrs: {
+          '.body': { fill: 'gold', stroke: 'black' },
+          '.label': { fill: 'gray', text: '' }
+        }
+      },
+      {
+        type: 'bpmn.Message',
+        attrs: {
+          '.body': { fill: 'gold', stroke: 'black' },
+          '.label': { fill: 'gray' }
+        }
+      }
+      // {
+      //   type: 'basic.Choreography',
+      //   participants: ['Participant 1', 'Participant 2']
+      // },
+      // {
+      //   type: 'basic.Message',
+      // },
+      // {
+      //   type: 'basic.DataObject',
+      //   attrs: {
+      //     '.body': { fill: 'gold', stroke: 'black' },
+      //     '.label': { fill: 'gray', text: 'My Data Object' }
+      //   },
+      //   markup: '<circle class="port-body" r="10"/>',
+      // }
+    ],
     basic: [
-      {
-        type: 'basic.Rect',
-        size: { width: 5, height: 3 },
-        attrs: {
-          '.': {
-            'data-tooltip': 'Rectangle',
-            'data-tooltip-position': 'left',
-            'data-tooltip-position-selector': '.joint-stencil'
-          },
-          rect: {
-            rx: 2,
-            ry: 2,
-            width: 50,
-            height: 30,
-            fill: 'transparent',
-            stroke: '#31d0c6',
-            'stroke-width': 2,
-            'stroke-dasharray': '0'
-          },
-          text: {
-            text: 'rect',
-            fill: '#c6c7e2',
-            'font-family': 'Roboto Condensed',
-            'font-weight': 'Normal',
-            'font-size': 11,
-            'stroke-width': 0
-          }
-        }
-      },
-      {
-        type: 'basic.Circle',
-        size: { width: 5, height: 3 },
-        attrs: {
-          '.': {
-            'data-tooltip': 'Ellipse',
-            'data-tooltip-position': 'left',
-            'data-tooltip-position-selector': '.joint-stencil'
-          },
-          circle: {
-            width: 50,
-            height: 30,
-            fill: 'transparent',
-            stroke: '#31d0c6',
-            'stroke-width': 2,
-            'stroke-dasharray': '0'
-          },
-          text: {
-            text: 'ellipse',
-            fill: '#c6c7e2',
-            'font-family': 'Roboto Condensed',
-            'font-weight': 'Normal',
-            'font-size': 11,
-            'stroke-width': 0
-          }
-        }
-      },
+      // {
+      //   type: 'basic.Rect',
+      //   size: { width: 5, height: 3 },
+      //   attrs: {
+      //     '.': {
+      //       'data-tooltip': 'Rectangle',
+      //       'data-tooltip-position': 'left',
+      //       'data-tooltip-position-selector': '.joint-stencil'
+      //     },
+      //     rect: {
+      //       rx: 2,
+      //       ry: 2,
+      //       width: 50,
+      //       height: 30,
+      //       fill: 'transparent',
+      //       stroke: '#31d0c6',
+      //       'stroke-width': 2,
+      //       'stroke-dasharray': '0'
+      //     },
+      //     text: {
+      //       text: 'rect',
+      //       fill: '#c6c7e2',
+      //       'font-family': 'Roboto Condensed',
+      //       'font-weight': 'Normal',
+      //       'font-size': 11,
+      //       'stroke-width': 0
+      //     }
+      //   }
+      // },
+      // {
+      //   type: 'basic.Circle',
+      //   size: { width: 5, height: 3 },
+      //   attrs: {
+      //     '.': {
+      //       'data-tooltip': 'Ellipse',
+      //       'data-tooltip-position': 'left',
+      //       'data-tooltip-position-selector': '.joint-stencil'
+      //     },
+      //     circle: {
+      //       width: 50,
+      //       height: 30,
+      //       fill: 'transparent',
+      //       stroke: '#31d0c6',
+      //       'stroke-width': 2,
+      //       'stroke-dasharray': '0'
+      //     },
+      //     text: {
+      //       text: 'ellipse',
+      //       fill: '#c6c7e2',
+      //       'font-family': 'Roboto Condensed',
+      //       'font-weight': 'Normal',
+      //       'font-size': 11,
+      //       'stroke-width': 0
+      //     }
+      //   }
+      // },
       {
         type: 'app.RectangularModel',
         size: { width: 40, height: 30 },
@@ -132,32 +233,32 @@ export const stencil = {
           }
         }
       },
-      {
-        type: 'basic.Image',
-        size: { width: 53, height: 42 },
-        attrs: {
-          '.': {
-            'data-tooltip': 'Image',
-            'data-tooltip-position': 'left',
-            'data-tooltip-position-selector': '.joint-stencil'
-          },
-          image: {
-            width: 53,
-            height: 42,
-            'xlink:href': require('../../assets/image-icon1.svg')
-          },
-          text: {
-            text: 'image',
-            'font-family': 'Roboto Condensed',
-            'font-weight': 'Normal',
-            'font-size': 9,
-            display: '',
-            stroke: '#000',
-            'stroke-width': 0,
-            'fill': '#222138'
-          }
-        }
-      }
+      // {
+      //   type: 'basic.Image',
+      //   size: { width: 53, height: 42 },
+      //   attrs: {
+      //     '.': {
+      //       'data-tooltip': 'Image',
+      //       'data-tooltip-position': 'left',
+      //       'data-tooltip-position-selector': '.joint-stencil'
+      //     },
+      //     image: {
+      //       width: 53,
+      //       height: 42,
+      //       'xlink:href': require('../../assets/image-icon1.svg')
+      //     },
+      //     text: {
+      //       text: 'image',
+      //       'font-family': 'Roboto Condensed',
+      //       'font-weight': 'Normal',
+      //       'font-size': 9,
+      //       display: '',
+      //       stroke: '#000',
+      //       'stroke-width': 0,
+      //       'fill': '#222138'
+      //     }
+      //   }
+      // }
     ],
     fsa: [
 

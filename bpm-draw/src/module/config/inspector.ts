@@ -157,7 +157,268 @@ const options = {
 };
 
 export const inspector = <{ [index: string]: any }>{
-
+  'bpmn.Gateway': {
+    inputs: {
+      attrs: {
+        '.body': {
+          fill: {
+            type: 'color-palette',
+            options: options.colorPalette,
+            label: 'Fill',
+            index: 0
+          }
+        },
+        '.label': {
+          text: {
+            type: 'text',
+            label: 'Text',
+            index: 1
+          },
+        }
+      },
+      icon: {
+        type: 'select-box',
+        options: [
+          {
+            value: 'none',
+            content: 'none'
+          },
+          {
+            value: 'message',
+            content: 'message'
+          },
+          {
+            value: 'user',
+            content: 'user'
+          },
+          {
+            value: 'plus',
+            content: 'plus'
+          },
+          {
+            value: 'cross',
+            content: 'cross'
+          },
+          {
+            value: 'circle',
+            content: 'circle'
+          },
+          {
+            value: 'service',
+            content: 'service'
+          }
+        ],
+        label: 'icon',
+        index: 1
+      }
+    }
+  },
+  'bpmn.Activity': {
+    inputs: {
+      attrs: {
+        '.body': {
+          fill: {
+            type: 'color-palette',
+            options: options.colorPalette,
+            label: 'Fill',
+            index: 0
+          }
+        },
+      },
+      activityType: {
+        type: 'select-box',
+        options: [
+          {
+            value: 'task',
+            content: 'task'
+          },
+          {
+            value: 'transaction',
+            content: 'transaction'
+          },
+          {
+            value: 'event-sub-process',
+            content: 'event-sub-process'
+          },
+          {
+            value: 'call-activity',
+            content: 'call-activity'
+          }
+        ],
+        label: 'type',
+        index: 1
+      },
+      content: {
+        type: 'text',
+        label: 'content',
+        index: 2
+      }
+    }
+  },
+  'bpmn.Event': {
+    inputs: {
+      attrs: {
+        '.body': {
+          fill: {
+            type: 'color-palette',
+            options: options.colorPalette,
+            label: 'Fill',
+            index: 0
+          },
+        },
+        '.label': {
+          text: {
+            type: 'text',
+            label: 'Text',
+            index: 1
+          },
+        }
+      },
+      eventType: {
+        type: 'select-box',
+        options: [
+          {
+            value: 'start',
+            content: 'start'
+          },
+          {
+            value: 'end',
+            content: 'end'
+          },
+          {
+            value: 'intermediate',
+            content: 'intermediate'
+          }
+        ],
+        label: 'type',
+        index: 2
+      },
+      icon: {
+        type: 'select-box',
+        options: [
+          {
+            value: 'none',
+            content: 'none'
+          },
+          {
+            value: 'message',
+            content: 'message'
+          },
+          {
+            value: 'user',
+            content: 'user'
+          },
+          {
+            value: 'plus',
+            content: 'plus'
+          },
+          {
+            value: 'cross',
+            content: 'cross'
+          },
+          {
+            value: 'circle',
+            content: 'circle'
+          },
+          {
+            value: 'service',
+            content: 'service'
+          }
+        ],
+        label: 'icon',
+        index: 3
+      }
+    }
+  },
+  'bpmn.Annotation': {
+    inputs: {
+      attrs: {
+        '.body': {
+          fill: {
+            type: 'color-palette',
+            options: options.colorPalette,
+            label: 'Fill',
+            index: 0
+          }
+        },
+        '.stroke': {
+          stroke: {
+            type: 'color-palette',
+            options: options.colorPalette,
+            label: 'Color',
+            index: 1
+          }
+        }
+      },
+      content: {
+        type: 'text',
+        label: 'content',
+        index: 2
+      }
+    }
+  },
+  'bpmn.Pool': {
+    inputs: {
+      attrs: {
+        '.header': {
+          fill: {
+            type: 'color-palette',
+            options: options.colorPalette,
+            label: 'Fill',
+            index: 0
+          }
+        }
+      },
+      lanes: {
+        label: {
+          type: 'text',
+          label: 'content',
+          index: 1
+        },
+        sublanes: {
+          type: 'list',
+          label: 'sublanes',
+          item: {
+            type: 'object',
+            properties: {
+              label: {
+                type: 'text',
+                label: 'label',
+                index: 1
+              },
+              sublanes: {
+                type: 'list',
+                label: 'sublanes',
+                item: {
+                  type: 'object',
+                  properties: {
+                    label: {
+                      type: 'text',
+                      label: 'label',
+                      index: 1
+                    },
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  'bpmn.Group': {
+    inputs: {
+      attrs: {
+        '.label': {
+          text: {
+            type: 'text',
+            label: 'text',
+            index: 0
+          }
+        }
+      }
+    }
+  },
   'app.Link': {
     inputs: {
       attrs: {
@@ -297,7 +558,7 @@ export const inspector = <{ [index: string]: any }>{
             }
           }
         }
-      }
+      },
     },
     groups: {
       connection: {

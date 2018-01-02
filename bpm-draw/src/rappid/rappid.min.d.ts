@@ -172,9 +172,9 @@ export namespace g {
 
         theta(p: PlainPoint | string): number;
 
-        angleBetween(p1: PlainPoint, p2: PlainPoint) : number;
+        angleBetween(p1: PlainPoint, p2: PlainPoint): number;
 
-        vectorAngle(p: PlainPoint) : number;
+        vectorAngle(p: PlainPoint): number;
 
         toJSON(): PlainPoint;
 
@@ -186,7 +186,7 @@ export namespace g {
 
         dot(p: PlainPoint): number;
 
-        cross(p1: PlainPoint, p2: PlainPoint) : number;
+        cross(p1: PlainPoint, p2: PlainPoint): number;
 
         static fromPolar(distance: number, angle: number, origin?: PlainPoint | string): Point;
 
@@ -442,7 +442,7 @@ export class Vectorizer {
 
     bbox(withoutTransformations?: boolean, target?: SVGElement | Vectorizer): g.Rect;
 
-    getBBox(opt?: Vectorizer.GetBBoxOptions) : g.Rect;
+    getBBox(opt?: Vectorizer.GetBBoxOptions): g.Rect;
 
     text(content: string, opt?: Vectorizer.TextOptions): this;
 
@@ -463,7 +463,7 @@ export class Vectorizer {
 
     before(els: Vectorizer | Vectorizer[] | SVGElement | SVGElement[]): this;
 
-    appendTo(el: SVGElement | Vectorizer) : this;
+    appendTo(el: SVGElement | Vectorizer): this;
 
     // returns either this or Vectorizer, no point in specifying this.
     svg(): Vectorizer;
@@ -568,7 +568,7 @@ export class Vectorizer {
 
     static mergeAttrs(a: any, b: any): any;
 
-    static annotateString(t: string, annotations: Vectorizer.TextAnnotation[], opt?: Vectorizer.AnnotateStringOptions): Array< string | { [key: string]: any }> ;
+    static annotateString(t: string, annotations: Vectorizer.TextAnnotation[], opt?: Vectorizer.AnnotateStringOptions): Array<string | { [key: string]: any }>;
 
     static findAnnotationsAtIndex(annotations: Vectorizer.TextAnnotation[], index: number): Vectorizer.TextAnnotation[];
 
@@ -706,8 +706,8 @@ export namespace dia {
 
         findModelsUnderElement(element: Element, opt?: {
             searchBy?: 'bottomLeft' | 'bottomMiddle' | 'center' |
-                'corner' | 'leftMiddle' | 'origin' | 'rightMiddle' |
-                'topMiddle' | 'topRight' | 'bbox'
+            'corner' | 'leftMiddle' | 'origin' | 'rightMiddle' |
+            'topMiddle' | 'topRight' | 'bbox'
         }): Element[];
 
         getBBox(cells?: Cell[], opt?: Cell.EmbeddableOptions): g.Rect | null;
@@ -751,7 +751,7 @@ export namespace dia {
         }
 
         interface Constructor<T extends Backbone.Model> {
-            new (options?: { id: string }): T
+            new(options?: { id: string }): T
         }
 
         interface EmbeddableOptions {
@@ -1448,7 +1448,9 @@ export namespace shapes {
     interface SVGPathSelector extends dia.Cell.Selectors {
         path?: attributes.SVGPathAttributes;
     }
-
+    namespace bpmn {
+        class Flow extends dia.Link { }
+    }
     namespace basic {
 
         class Generic extends dia.Element {
@@ -2841,7 +2843,7 @@ export namespace ui {
 
         protected position(): void;
 
-        protected onToolPointerdown(evt: JQuery.Event): void ;
+        protected onToolPointerdown(evt: JQuery.Event): void;
 
         protected onDocumentMousedown(evt: JQuery.Event): void;
 
@@ -3374,7 +3376,7 @@ export namespace ui {
 
         render(): this;
 
-        protected getTooltipSettings(el: HTMLElement): { [key: string ]: any };
+        protected getTooltipSettings(el: HTMLElement): { [key: string]: any };
     }
 
     namespace Tooltip {
@@ -3906,7 +3908,7 @@ export namespace com {
 
         healthCheck(): void;
 
-        broadcast(message:  { [key: string]: any }): void;
+        broadcast(message: { [key: string]: any }): void;
 
         send(): void;
 
