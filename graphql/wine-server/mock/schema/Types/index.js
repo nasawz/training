@@ -1,17 +1,21 @@
 const typeDefs = `
+  # 设备
   type Device {
     id: ID!
     name: String!
     createdAt: String!
     updatedAt: String!
-    propertysConnection(skip: Int, first: Int): PropertysConnection!
+    propertiesConnection(skip: Int!, limit: Int!): PropertiesConnection!
   }
 
-  type PropertysConnection {
+  # 设备属性
+  type PropertiesConnection {
+    # 总记录数
     totalCount: Int
-    propertys: [Property]
+    properties: [Property]
   }  
 
+  # 设备属性
   type Property {
     id: ID!
     name: String!
@@ -19,9 +23,11 @@ const typeDefs = `
     updatedAt: String!
   }
 
+  # WINE iot 数据接口
   type Query {
-    allDevices(skip: Int, first: Int): [Device!]!
+    # 获取所有设备列表
+    allDevices(skip: Int!, limit: Int!): [Device!]!
   }  
 
 `
-export default typeDefs 
+module.exports = typeDefs 
