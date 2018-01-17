@@ -3,7 +3,7 @@ module.exports = {
     allDevices: async (root, { pager: { skip, limit } }, { db: { devices } }) => {
       return {
         totalCount: new Promise((resolve, reject) => {
-          devices.find({}).exec((err, res) => (err ? reject(err) : resolve(res.length)));
+          devices.count({}).exec((err, count) => (err ? reject(err) : resolve(count)));
         }),
         data: new Promise((resolve, reject) => {
           devices
@@ -20,7 +20,7 @@ module.exports = {
     attributesConnection: ({ _id }, { pager: { skip, limit } }, { db: { devices, attributes } }) => {
       return {
         totalCount: new Promise((resolve, reject) => {
-          attributes.find({ deviceId: _id }).exec((err, res) => (err ? reject(err) : resolve(res.length)));
+          attributes.count({ deviceId: _id }).exec((err, count) => (err ? reject(err) : resolve(count)));
         }),
         data: new Promise((resolve, reject) => {
           attributes
