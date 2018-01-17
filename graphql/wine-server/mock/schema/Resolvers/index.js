@@ -1,6 +1,6 @@
 module.exports = {
   Query: {
-    allDevices: async (root, { skip, limit }, { db: { devices } }) => {
+    allDevices: async (root, { pager: { skip, limit } }, { db: { devices } }) => {
       return {
         totalCount: new Promise((resolve, reject) => {
           devices.find({}).exec((err, res) => (err ? reject(err) : resolve(res.length)));
@@ -17,7 +17,7 @@ module.exports = {
   },
   Device: {
     id: root => root._id || root.id,
-    attributesConnection: ({ _id }, { skip, limit }, { db: { devices, attributes } }) => {
+    attributesConnection: ({ _id }, { pager: { skip, limit } }, { db: { devices, attributes } }) => {
       return {
         totalCount: new Promise((resolve, reject) => {
           attributes.find({ deviceId: _id }).exec((err, res) => (err ? reject(err) : resolve(res.length)));
