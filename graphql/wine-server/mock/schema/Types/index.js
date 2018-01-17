@@ -5,18 +5,23 @@ const typeDefs = `
     name: String!
     createdAt: String!
     updatedAt: String!
-    propertiesConnection(skip: Int!, limit: Int!): PropertiesConnection!
+    attributesConnection(skip: Int!, limit: Int!): AttributesConnection!
   }
 
-  # 设备属性
-  type PropertiesConnection {
+  type AttributesConnection {
     # 总记录数
     totalCount: Int
-    properties: [Property]
+    data: [Attribute]
+  }  
+
+  type DevicesConnection {
+    # 总记录数
+    totalCount: Int
+    data: [Device]
   }  
 
   # 设备属性
-  type Property {
+  type Attribute {
     id: ID!
     name: String!
     createdAt: String!
@@ -26,7 +31,7 @@ const typeDefs = `
   # WINE iot 数据接口
   type Query {
     # 获取所有设备列表
-    allDevices(skip: Int!, limit: Int!): [Device!]!
+    allDevices(skip: Int!, limit: Int!): DevicesConnection!
   }  
 
 `

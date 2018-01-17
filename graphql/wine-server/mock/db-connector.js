@@ -8,8 +8,8 @@ module.exports = async () => {
     timestampData: true
   });
 
-  const propertyDb = new Datastore({
-    filename: path.resolve(__dirname, '../db/property.db'),
+  const attributeDb = new Datastore({
+    filename: path.resolve(__dirname, '../db/attribute.db'),
     autoload: true,
     timestampData: true
   });
@@ -17,7 +17,7 @@ module.exports = async () => {
 
   return {
     devices: deviceDb,
-    properties: propertyDb
+    attributes: attributeDb
   };
 }
 // const deviceDb = new Datastore({
@@ -26,8 +26,8 @@ module.exports = async () => {
 //   timestampData: true
 // });
 
-// const propertyDb = new Datastore({
-//   filename: path.resolve(__dirname, '../db/property.db'),
+// const attributeDb = new Datastore({
+//   filename: path.resolve(__dirname, '../db/attribute.db'),
 //   autoload: true,
 //   timestampData: true
 // });
@@ -37,7 +37,7 @@ module.exports = async () => {
 //   name: '压缩机',
 // }, (err, newDoc) => {
 //   console.log(newDoc);
-//   propertyDb.insert([
+//   attributeDb.insert([
 //     { name: '压缩机 属性1', deviceId: newDoc._id },
 //     { name: '压缩机 属性2', deviceId: newDoc._id },
 //     { name: '压缩机 属性3', deviceId: newDoc._id },
@@ -59,7 +59,7 @@ module.exports = async () => {
 //   name: '搅拌机',
 // }, (err, newDoc) => {
 //   console.log(newDoc);
-//   propertyDb.insert([
+//   attributeDb.insert([
 //     { name: '搅拌机 属性1', deviceId: newDoc._id },
 //     { name: '搅拌机 属性2', deviceId: newDoc._id },
 //     { name: '搅拌机 属性3', deviceId: newDoc._id },
