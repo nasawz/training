@@ -1,0 +1,20 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+$script = <<SCRIPT
+
+echo "Installing dependencies ..."
+yum install -y epel-release
+yum install -y net-tools
+
+echo "Installing nginx ..."
+yum install -y nginx
+
+SCRIPT
+
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "centos/7"
+  config.vm.provision "shell", inline: $script
+  config.vm.network "private_network", ip: "172.30.30.10"
+end
