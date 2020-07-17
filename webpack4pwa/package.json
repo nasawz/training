@@ -22,7 +22,7 @@
     "http-proxy-middleware": "^0.17.4",
     "less": "^2.7.3",
     "less-loader": "^4.0.5",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.19",
     "offline-plugin": "^4.8.5",
     "postcss-cssnext": "^3.0.2",
     "postcss-import": "^11.0.0",
