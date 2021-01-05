@@ -30,7 +30,7 @@
     "@types/redux-logger": "^3.0.0",
     "@types/superagent": "^3.5.3",
     "@types/webpack-env": "^1.13.0",
-    "axios": "^0.17.1",
+    "axios": "^0.21.1",
     "core-js": "^2.5.1",
     "deep-freeze": "^0.0.1",
     "enzyme": "^2.9.1",
